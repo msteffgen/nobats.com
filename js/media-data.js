@@ -159,7 +159,7 @@ const albums = {
   'san-antonio-2009': [
     'img/gallery/2000s/2009/sanantonio_1.jpg',
     'img/gallery/2000s/2009/sanantonio_3.jpg',
-    'img/gallery/2000s/2009/sanantonio_5.jpg',
+    'img/gallery/2000s/2009/sanantonio_5.jpg'
   ],
   'savannah-2024': [
     'img/gallery/2020s/2024/savannah_24_1.jpg',
