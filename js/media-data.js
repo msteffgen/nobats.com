@@ -169,6 +169,13 @@ const albums = {
     'img/gallery/2020s/2024/savannah_24_5.jpg',
     'img/gallery/2020s/2024/savannah_24_6.jpg'
   ],
+'dyersville-2025': [
+    'img/gallery/2020s/2025/ray_loves_anne.jpeg',
+    'img/gallery/2020s/2025/IMG_3615.jpg',
+    'img/gallery/2020s/2025/IMG_9180.JPEG',
+    'img/gallery/2020s/2025/IMG_9185.JPEG',
+    'img/gallery/2020s/2025/jIM sARDANO sTEVE bOUCHARD.jpEg'
+],
   'chicago-2022': [
     'img/gallery/2020s/2022/chicago_22_1.png',
     'img/gallery/2020s/2022/chicago_22_2.png'

@@ -86,6 +86,7 @@ function closeCharityModal() {
 
 function getTotalForYear(year) {
   const yearCards = {
+    '2025': '$131,000',
     '2024': '$75,000',
     '2023': '$8,100',
     '2022': '$121,310',
@@ -120,6 +121,22 @@ function getTotalForYear(year) {
 
 function getCharityDataForYear(year) {
   const charityData = {
+    '2025': [
+        {
+            name: 'Multiple Charities',
+            amount: '$75,000',
+            description: 'Unlike previous events where there was a primary charity focus, this event was a celebration of individual passion, as every attendee supported their own favorite charities.',
+            logo: 'img/charities/nbbclogo.png',
+            link: ''
+        },
+        {
+            name: 'LIV Golf Ticket Giveaway',
+            amount: '$56,000',
+            description: "Thanks to the generosity of LIV Golf CEO and No Bats Member Scott O'Neil, 1,160 Junor Golf tickets were donated for attendance to LIV golf events.  Charitable organizations included Boys and Girls Clubs in Virginia, Greater Dallas, Indianapolis, Chicago, and Detroit; Anthony Rizzo Foundation",
+            logo: 'img/charities/nbbclogo.png',
+            link: ''
+        }
+    ],
     '2024': [
       {
         name: 'Bananas Foster',
