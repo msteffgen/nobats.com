@@ -44,7 +44,7 @@ const membersData = [
   { name: "Dan Carroll", image: "carroll_dan.png" },
   { name: "Pat Casper", image: "casper_pat.png" },
   { name: "Dave Cassese", image: "cassese_dave.png" },
-  { name: "David Cassese Jr", image: "cassese_david.png" },
+  { name: "Dave Cassese II", image: "cassese_david.png" },
   { name: "Mark Cates", image: "cates_mark.png" },
   { name: "Steve Cauthen", image: "cauthen_steve.png" },
   { name: "Eric Chapman", image: "chapman_eric.png" },
