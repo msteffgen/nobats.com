@@ -183,7 +183,7 @@ const membersData = [
   { name: "Emmett Reagan", image: "reagan_emmett.png" },
   { name: "Jeff Reardon", image: "reardon_jeff.png" },
   { name: "Murphy Reed", image: "reed_murphy.png" },
-  { name: "Bryan Reed", image: "ryan_reid.png" },
+  { name: "Bryan Reed", image: "reed_bryan.jpeg" },
   { name: "Brian Rhoney", image: "rhoney_brian.png" },
   { name: "Derek Rhoney", image: "rhoney_derek.png" },
   { name: "Rick Richmond", image: "richmond_rick.png" },

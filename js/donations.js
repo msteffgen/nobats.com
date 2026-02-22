@@ -86,6 +86,7 @@ function closeCharityModal() {
 
 function getTotalForYear(year) {
   const yearCards = {
+    '2026': '$5,000',
     '2025': '$131,000',
     '2024': '$75,000',
     '2023': '$8,100',
@@ -121,6 +122,15 @@ function getTotalForYear(year) {
 
 function getCharityDataForYear(year) {
   const charityData = {
+    '2026': [
+        {
+            name: 'Bimini, Bahamas',
+            amount: '$5,000',
+            description: "Shortly after his return from Field of Dreams, Brian Crawford got busy teaming up with a local batting cage facility, D-BAT, in St. Augustine, FL, collecting gently used baseball and softball equipment to be donated to the Island of Bimini. The donations rolled in from teams, organizations, and parents over the last few months. So much was donated Craw was able to do a quality control check and deliver equipment that is in great shape!<br/><br/>The inventory included: 45 gloves, 55 bats, 152 baseballs, 36 pairs of cleats, 25 softballs, 8 water bottles, 3 complete sets of catcher's gear, an extra face mask, 10 batting helmets, 3 bat backpacks, 1 rolling bat bag, 2 small coolers, 3 whiffle balls, and lots of miscellaneous gear!",
+            logo: 'img/charities/bimini_equipment_drive.png',
+            link: ''
+        }
+    ],
     '2025': [
         {
             name: 'Multiple Charities',
