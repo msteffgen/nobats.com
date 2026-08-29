@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>No Bats Draft Board</title>
+<style>
+  @page { size: letter portrait; margin: 0.4in; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #0b3d2e;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #1a1a1a;
+  }
+  .sheet {
+    width: 10.2in;
+    max-width: 100%;
+    margin: 0.25in auto;
+    background: #fdfaf0;
+    border: 6px solid #8a1a1a;
+    border-radius: 10px;
+    padding: 0.22in 0.35in;
+  }
+  .board-header {
+    text-align: center;
+    border-bottom: 3px dashed #8a1a1a;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+  .board-header h1 {
+    margin: 0;
+    font-size: 19px;
+    letter-spacing: 2px;
+    color: #8a1a1a;
+    text-transform: uppercase;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .columns {
+    display: flex;
+    gap: 14px;
+  }
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #d8cfa8;
+    border-radius: 6px;
+    padding: 2px 6px;
+    height: 0.42in;
+  }
+  .rank {
+    width: 16px;
+    flex: 0 0 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+    color: #fff;
+    background: #0b3d2e;
+    border-radius: 4px;
+    padding: 2px 0;
+  }
+  .photo {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #8a1a1a;
+    background: #eee;
+  }
+  .photo.missing {
+    opacity: 0.55;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .name {
+    font-size: 11.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .name b {
+    font-weight: 700;
+  }
+  .years {
+    flex: 0 0 auto;
+    text-align: right;
+    line-height: 1;
+  }
+  .years .num {
+    font-size: 15px;
+    font-weight: 800;
+    color: #8a1a1a;
+  }
+  .years .lbl {
+    font-size: 8px;
+    text-transform: uppercase;
+    color: #777;
+    margin-left: 2px;
+  }
+  .row.rookie-row {
+    background: #fff6da;
+    border: 1px solid #f0a500;
+  }
+  .rookie-badge {
+    font-size: 9px;
+    font-weight: 800;
+    background: #f0a500;
+    color: #1a1a1a;
+    border-radius: 4px;
+    padding: 3px 5px;
+    letter-spacing: 0.5px;
+  }
+  .print-bar {
+    text-align: center;
+    margin: 10px auto;
+  }
+  .print-bar button {
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: none;
+    background: #8a1a1a;
+    color: #fff;
+    cursor: pointer;
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { margin: 0; border-width: 4px; }
+    .print-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-bar"><button onclick="window.print()">Print / Save as PDF</button></div>
+  <div class="sheet">
+    <div class="board-header">
+      <h1>No Bats Baseball Club &mdash; Draft Board</h1>
+    </div>
+    <div class="columns">
+    <div class="col">
+      <div class="row">
+        <div class="rank">1</div>
+        <img class="photo" src="../../img/members/andregg_bryson.png" alt="Bryson Andregg">
+        <div class="who">
+          <div class="name">Bryson <b>Andregg</b></div>
+        </div>
+        <div class="years"><span class="num">2</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">2</div>
+        <img class="photo" src="../../img/members/andregg_mark.png" alt="Mark Andregg">
+        <div class="who">
+          <div class="name">Mark <b>Andregg</b></div>
+        </div>
+        <div class="years"><span class="num">29</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">3</div>
+        <img class="photo" src="../../img/members/andregg_tanner.png" alt="Tanner Andregg">
+        <div class="who">
+          <div class="name">Tanner <b>Andregg</b></div>
+        </div>
+        <div class="years"><span class="num">2</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">4</div>
+        <img class="photo" src="../../img/members/arnold_brian.png" alt="Brian Arnold">
+        <div class="who">
+          <div class="name">Brian <b>Arnold</b></div>
+        </div>
+        <div class="years"><span class="num">4</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">5</div>
+        <img class="photo" src="../../img/members/arnold_chad.png" alt="Chad Arnold">
+        <div class="who">
+          <div class="name">Chad <b>Arnold</b></div>
+        </div>
+        <div class="years"><span class="num">4</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">6</div>
+        <img class="photo" src="../../img/members/camarda_domenic.png" alt="Domenic Camarda">
+        <div class="who">
+          <div class="name">Domenic <b>Camarda</b></div>
+        </div>
+        <div class="years"><span class="num">13</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">7</div>
+        <img class="photo" src="../../img/members/camarda_francesco.jpg" alt="Francesco Camarda">
+        <div class="who">
+          <div class="name">Francesco <b>Camarda</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">8</div>
+        <img class="photo" src="../../img/members/carroll_dan.png" alt="Dan Carroll">
+        <div class="who">
+          <div class="name">Dan <b>Carroll</b></div>
+        </div>
+        <div class="years"><span class="num">19</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">9</div>
+        <img class="photo" src="../../img/members/cornell_dave.png" alt="Dave Cornell">
+        <div class="who">
+          <div class="name">Dave <b>Cornell</b></div>
+        </div>
+        <div class="years"><span class="num">14</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">10</div>
+        <img class="photo" src="../../img/members/costigan_dan.png" alt="Dan Costigan">
+        <div class="who">
+          <div class="name">Dan <b>Costigan</b></div>
+        </div>
+        <div class="years"><span class="num">11</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">11</div>
+        <img class="photo" src="../../img/members/costigan_mark.png" alt="Mark Costigan">
+        <div class="who">
+          <div class="name">Mark <b>Costigan</b></div>
+        </div>
+        <div class="years"><span class="num">22</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">12</div>
+        <img class="photo" src="../../img/members/crawford_brian.png" alt="Brian Crawford">
+        <div class="who">
+          <div class="name">Brian <b>Crawford</b></div>
+        </div>
+        <div class="years"><span class="num">21</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">13</div>
+        <img class="photo" src="../../img/members/crawford_evan.png" alt="Evan Crawford">
+        <div class="who">
+          <div class="name">Evan <b>Crawford</b></div>
+        </div>
+        <div class="years"><span class="num">9</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">14</div>
+        <img class="photo" src="../../img/members/davis_claudia.png" alt="Claudia Davis">
+        <div class="who">
+          <div class="name">Claudia <b>Davis</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">15</div>
+        <img class="photo" src="../../img/members/dobbins_matt.png" alt="Matt Dobbins">
+        <div class="who">
+          <div class="name">Matt <b>Dobbins</b></div>
+        </div>
+        <div class="years"><span class="num">2</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">16</div>
+        <img class="photo" src="../../img/members/dusza_brian.png" alt="Brian Dusza">
+        <div class="who">
+          <div class="name">Brian <b>Dusza</b></div>
+        </div>
+        <div class="years"><span class="num">4</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">17</div>
+        <img class="photo" src="../../img/members/gaca_jason.jpeg" alt="Jason Gaca">
+        <div class="who">
+          <div class="name">Jason <b>Gaca</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">18</div>
+        <img class="photo" src="../../img/members/hammerle_scott.png" alt="Scott Hammerle">
+        <div class="who">
+          <div class="name">Scott <b>Hammerle</b></div>
+        </div>
+        <div class="years"><span class="num">8</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">19</div>
+        <img class="photo" src="../../img/members/howland_mike.png" alt="Mike Howland">
+        <div class="who">
+          <div class="name">Mike <b>Howland</b></div>
+        </div>
+        <div class="years"><span class="num">19</span><span class="lbl">yrs</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="rank">20</div>
+        <img class="photo" src="../../img/members/hutchens_ryan.jpeg" alt="Ryan Hutchens">
+        <div class="who">
+          <div class="name">Ryan <b>Hutchens</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">21</div>
+        <img class="photo" src="../../img/members/jones_brian.png" alt="Brian Jones">
+        <div class="who">
+          <div class="name">Brian <b>Jones</b></div>
+        </div>
+        <div class="years"><span class="num">6</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">22</div>
+        <img class="photo" src="../../img/members/kedzior_bob.png" alt="Bob Kedzior">
+        <div class="who">
+          <div class="name">Bob <b>Kedzior</b></div>
+        </div>
+        <div class="years"><span class="num">23</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">23</div>
+        <img class="photo" src="../../img/members/klubock_dave.png" alt="Dave Klubock">
+        <div class="who">
+          <div class="name">Dave <b>Klubock</b></div>
+        </div>
+        <div class="years"><span class="num">31</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">24</div>
+        <img class="photo" src="../../img/members/lippert_don.png" alt="Don Lippert">
+        <div class="who">
+          <div class="name">Don <b>Lippert</b></div>
+        </div>
+        <div class="years"><span class="num">19</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">25</div>
+        <img class="photo" src="../../img/members/martin_brad.png" alt="Brad Martin">
+        <div class="who">
+          <div class="name">Brad <b>Martin</b></div>
+        </div>
+        <div class="years"><span class="num">7</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">26</div>
+        <img class="photo" src="../../img/members/matthews_marc.png" alt="Marc Matthews">
+        <div class="who">
+          <div class="name">Marc <b>Matthews</b></div>
+        </div>
+        <div class="years"><span class="num">?</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">27</div>
+        <img class="photo" src="../../img/members/mayer_dylan.png" alt="Dylan Mayer">
+        <div class="who">
+          <div class="name">Dylan <b>Mayer</b></div>
+        </div>
+        <div class="years"><span class="num">6</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">28</div>
+        <img class="photo" src="../../img/members/maynard_conor.png" alt="Conor Maynard">
+        <div class="who">
+          <div class="name">Conor <b>Maynard</b></div>
+        </div>
+        <div class="years"><span class="num">12</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">29</div>
+        <img class="photo" src="../../img/members/mcclintock_bill.png" alt="Bill McClintock">
+        <div class="who">
+          <div class="name">Bill <b>McClintock</b></div>
+        </div>
+        <div class="years"><span class="num">10</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">30</div>
+        <img class="photo" src="../../img/members/mcroberts_hank.png" alt="Hank McRoberts">
+        <div class="who">
+          <div class="name">Hank <b>McRoberts</b></div>
+        </div>
+        <div class="years"><span class="num">17</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">31</div>
+        <img class="photo" src="../../img/members/petruzzelli_nico.jpg" alt="Nico Petruzzelli">
+        <div class="who">
+          <div class="name">Nico <b>Petruzzelli</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">32</div>
+        <img class="photo" src="../../img/members/quintas_dean.png" alt="Dean Quintas">
+        <div class="who">
+          <div class="name">Dean <b>Quintas</b></div>
+        </div>
+        <div class="years"><span class="num">4</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">33</div>
+        <img class="photo" src="../../img/members/rhoney_derek.png" alt="Derek Rhoney">
+        <div class="who">
+          <div class="name">Derek <b>Rhoney</b></div>
+        </div>
+        <div class="years"><span class="num">9</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">34</div>
+        <img class="photo" src="../../img/members/savage_jamie.png" alt="Jamie Savage">
+        <div class="who">
+          <div class="name">Jamie <b>Savage</b></div>
+        </div>
+        <div class="years"><span class="num">4</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">35</div>
+        <img class="photo" src="../../img/members/schnake_steve.png" alt="Steven Schnake">
+        <div class="who">
+          <div class="name">Steven <b>Schnake</b></div>
+        </div>
+        <div class="years"><span class="num">9</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">36</div>
+        <img class="photo" src="../../img/members/shaw_rick.png" alt="Rick Shaw">
+        <div class="who">
+          <div class="name">Rick <b>Shaw</b></div>
+        </div>
+        <div class="years"><span class="num">31</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">37</div>
+        <img class="photo" src="../../img/members/simendinger_mark.png" alt="Mark Simendinger">
+        <div class="who">
+          <div class="name">Mark <b>Simendinger</b></div>
+        </div>
+        <div class="years"><span class="num">?</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">38</div>
+        <img class="photo" src="../../img/members/steffgen_mike.png" alt="Mike Steffgen">
+        <div class="who">
+          <div class="name">Mike <b>Steffgen</b></div>
+        </div>
+        <div class="years"><span class="num">27</span><span class="lbl">yrs</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="rank">39</div>
+        <img class="photo" src="../../img/members/steffgen_tj.jpg" alt="TJ Steffgen">
+        <div class="who">
+          <div class="name">TJ <b>Steffgen</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">40</div>
+        <img class="photo" src="../../img/members/swallow_greg.png" alt="Greg Swallow">
+        <div class="who">
+          <div class="name">Greg <b>Swallow</b></div>
+        </div>
+        <div class="years"><span class="num">22</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">41</div>
+        <img class="photo" src="../../img/members/tarnoff_andy.png" alt="Andy Tarnoff">
+        <div class="who">
+          <div class="name">Andy <b>Tarnoff</b></div>
+        </div>
+        <div class="years"><span class="num">7</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">42</div>
+        <img class="photo" src="../../img/members/tatham_todd.png" alt="Todd Tatham">
+        <div class="who">
+          <div class="name">Todd <b>Tatham</b></div>
+        </div>
+        <div class="years"><span class="num">?</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">43</div>
+        <img class="photo" src="../../img/members/tecklenburg_brandon.png" alt="Brandon Tecklenburg">
+        <div class="who">
+          <div class="name">Brandon <b>Tecklenburg</b></div>
+        </div>
+        <div class="years"><span class="num">8</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">44</div>
+        <img class="photo" src="../../img/members/vaughn_clint.png" alt="Clint Vaughn">
+        <div class="who">
+          <div class="name">Clint <b>Vaughn</b></div>
+        </div>
+        <div class="years"><span class="num">8</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">45</div>
+        <img class="photo" src="../../img/members/williamson_jt.png" alt="JT Williamson">
+        <div class="who">
+          <div class="name">JT <b>Williamson</b></div>
+        </div>
+        <div class="years"><span class="num">3</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row">
+        <div class="rank">46</div>
+        <img class="photo" src="../../img/members/wolfe_bret.png" alt="Bret Wolfe">
+        <div class="who">
+          <div class="name">Bret <b>Wolfe</b></div>
+        </div>
+        <div class="years"><span class="num">11</span><span class="lbl">yrs</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">47</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Michael Bupp">
+        <div class="who">
+          <div class="name">Michael <b>Bupp</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">48</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Sheldon Chandler">
+        <div class="who">
+          <div class="name">Sheldon <b>Chandler</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">49</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Ronnie Cosse">
+        <div class="who">
+          <div class="name">Ronnie <b>Cosse</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">50</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Sam Fontaine">
+        <div class="who">
+          <div class="name">Sam <b>Fontaine</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">51</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Jackson Friday">
+        <div class="who">
+          <div class="name">Jackson <b>Friday</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">52</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="James Friday">
+        <div class="who">
+          <div class="name">James <b>Friday</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">53</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Mike Futrell">
+        <div class="who">
+          <div class="name">Mike <b>Futrell</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">54</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="John Gaca">
+        <div class="who">
+          <div class="name">John <b>Gaca</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">55</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Ryan Martin">
+        <div class="who">
+          <div class="name">Ryan <b>Martin</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+      <div class="row rookie-row">
+        <div class="rank">56</div>
+        <img class="photo missing" src="../../img/members/missing_image.png" alt="Henry McRoberts">
+        <div class="who">
+          <div class="name">Henry <b>McRoberts</b></div>
+        </div>
+        <div class="years"><span class="rookie-badge">ROOKIE</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
