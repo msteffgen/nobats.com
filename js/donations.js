@@ -86,7 +86,7 @@ function closeCharityModal() {
 
 function getTotalForYear(year) {
   const yearCards = {
-    '2026': '$5,000',
+    '2026': '$88,000',
     '2025': '$131,000',
     '2024': '$75,000',
     '2023': '$8,100',
@@ -123,6 +123,13 @@ function getTotalForYear(year) {
 function getCharityDataForYear(year) {
   const charityData = {
     '2026': [
+        {
+          name: 'Reds Community Fund',
+          amount: '$83,000',
+          description: 'The Reds Community Fund is dedicated to improving the lives of youth by leveraging the tradition of the Cincinnati Reds and the game of baseball.',
+          logo: 'img/charities/reds_community_fund.png',
+          link: 'https://www.mlb.com/reds/community'
+        },
         {
             name: 'Bimini, Bahamas',
             amount: '$5,000',
