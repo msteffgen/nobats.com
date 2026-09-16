@@ -45,6 +45,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -140,6 +141,14 @@ a:hover {
   padding: var(--spacing-xl) 0;
 }
 
+.section + .section {
+  padding-top: 0;
+}
+
+#about {
+  scroll-margin-top: 100px;
+}
+
 .section-sm {
   padding: var(--spacing-lg) 0;
 }
@@ -167,6 +176,7 @@ a:hover {
   top: 0;
   left: 0;
   width: 100%;
+  max-width: 100vw;
   background-color: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -271,9 +281,13 @@ a:hover {
     height: 80px;
     justify-content: space-between;
   }
-  
+
   .logo img {
-    height: 60px;
+    height: 72px;
+  }
+
+  .header.scrolled .logo img {
+    height: 64px;
   }
 
   .nav {
@@ -347,15 +361,6 @@ a:hover {
   }
 }
 
-@media (max-width: 576px) {
-  .logo img {
-    height: 60px;
-  }
-  
-  .header.scrolled .logo img {
-    height: 50px;
-  }
-}
 
 /* Dark overlay when mobile menu is open */
 .nav-overlay {
@@ -394,6 +399,13 @@ body.nav-open {
   height: 300px; /* Set a fixed height for consistency */
   object-fit: cover;
   border-radius: var(--border-radius-lg);
+}
+
+@media (max-width: 768px) {
+  .page-header-image img {
+    height: auto;
+    aspect-ratio: 4 / 1;
+  }
 }
 
 /* Hero Section with adjusted padding */
@@ -447,6 +459,16 @@ body.nav-open {
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: var(--spacing-lg);
+}
+
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-break {
+    display: block;
+  }
 }
 
 /* Buttons */
@@ -861,15 +883,6 @@ body.nav-open {
   .hero-title { font-size: 2.5rem; }
   .hero-subtitle { font-size: 1.25rem; }
   
-  /* Smaller logo on tablets */
-  .logo img {
-    height: 60px;
-  }
-  
-  .header.scrolled .logo img {
-    height: 50px;
-  }
-  
   /* Navigation mobile styles */
   .nav-toggle { display: block; }
   
@@ -919,15 +932,6 @@ body.nav-open {
 }
 
 @media (max-width: 768px) {
-  /* Adjust logo size for mobile */
-  .logo img {
-    height: 55px;
-  }
-  
-  .header.scrolled .logo img {
-    height: 45px;
-  }
-  
   /* Adjust header padding for mobile */
   .header {
     padding: 1rem 0;
@@ -2067,6 +2071,19 @@ body.nav-open {
   color: white;
 }
 
+@media (max-width: 480px) {
+  .section-tabs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .section-tab {
+    margin: 0;
+    text-align: center;
+  }
+}
+
 /* Member search functionality */
 .member-search {
   margin-bottom: 2rem;
@@ -2250,17 +2267,21 @@ body.nav-open {
 .carousel-track {
   position: relative;
   width: 100%;
+  display: grid;
 }
 
 .testimonial-slide {
-  display: none;
+  grid-area: 1 / 1;
+  visibility: hidden;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease-in-out;
 }
 
 .testimonial-slide.active {
-  display: block;
+  visibility: visible;
   opacity: 1;
+  pointer-events: auto;
 }
 
 .testimonials-carousel .testimonial {
@@ -3026,6 +3047,16 @@ body.nav-open {
   color: white;
 }
 
+@media (max-width: 576px) {
+  .decade-filters {
+    gap: 0.5rem;
+  }
+
+  .decade-filter[data-decade="all"] {
+    flex-basis: 100%;
+  }
+}
+
 .album-card {
   display: none;
 }
@@ -3060,21 +3091,9 @@ body.nav-open {
   flex: 1 1 0%;
 }
 @media (max-width: 600px) {
-  .baseball-card {
-    flex-direction: column;
-    text-align: center;
-    align-items: stretch;
-  }
   .legend-player-img {
-    width: 100%;
-    min-width: 0;
-    height: 120px;
-    padding: 0;
-    justify-content: center;
-  }
-  .legend-player-img img {
-    width: 100%;
-    height: 100%;
+    width: 90px;
+    min-width: 90px;
   }
 }
 
@@ -3296,6 +3315,23 @@ body.nav-open {
   outline-offset: 2px;
 }
 
+@media (max-width: 1100px) {
+  .media-carousel .carousel-controls {
+    left: 0;
+    right: 0;
+  }
+
+  /* Quotes vary in length, so arrows vertically centered on the card can land
+     on top of the text. Move them into a static row below the quote instead. */
+  .testimonials-carousel .carousel-controls {
+    position: static;
+    transform: none;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+}
+
 .media-carousel .carousel-indicators {
   display: flex;
   justify-content: center;
@@ -3306,6 +3342,13 @@ body.nav-open {
   width: 100%;
   height: 550px;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .media-carousel .media-slide {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
 }
 
 .media-carousel .photo-img {
@@ -4481,7 +4524,20 @@ body.nav-open {
     height: 40px;
     font-size: 1rem;
   }
-  
+
+  .timeline-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .event-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .event-stat {
+    white-space: normal;
+  }
+
   .hero-flex {
     flex-direction: column;
     gap: 1.5rem;
@@ -4818,49 +4874,84 @@ body.nav-open {
   letter-spacing: 0.01em;
 }
 .hof-list, .managers-list, .smites-list, .rookies-list {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, max-content));
+  gap: 1rem;
+  justify-content: start;
 }
 
 .awards-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, max-content));
   gap: 1.5rem;
+  justify-content: start;
+  align-items: start;
 }
 
 .award-row {
+  display: contents;
+}
+
+/* All-Time Team roster - plain position label, no colored badge */
+.all-time-roster {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  width: 100%;
-  margin-bottom: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.roster-person {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.roster-person img {
+  width: 60px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.roster-position {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+
+.roster-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a2234;
 }
 .hof-person, .manager-person, .smite-person, .rookie-person {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.6rem;
+  text-align: left;
 }
 
 .award-person {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.85rem;
   min-width: 0;
-  text-align: center;
+  text-align: left;
 }
 .hof-person img, .award-person img, .manager-person img, .smite-person img, .rookie-person img {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 78px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 10px;
   border: 2px solid #e5e7eb;
   background: #fff;
+  flex-shrink: 0;
 }
 .hof-name, .award-name, .manager-name, .smite-name, .rookie-name {
   font-size: 1.05rem;
@@ -4871,19 +4962,25 @@ body.nav-open {
 .award-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
+  align-items: flex-start;
+  gap: 0.3rem;
+  min-width: 0;
+  flex: 1;
 }
 .award-label {
   font-size: 0.95rem;
   font-weight: 500;
   margin-top: 0.1rem;
   padding: 0.15em 0.7em;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3em;
+  border-radius: 8px;
+  display: inline-block;
   color: #fff;
+  max-width: 100%;
+  text-align: left;
+  line-height: 1.3;
+}
+.award-label i {
+  display: none;
 }
 .award-label.tournament {
   background: #f59e0b;
@@ -4930,6 +5027,11 @@ body.nav-open {
   font-weight: 600;
   color: #1a2234;
   margin-top: 0.2rem;
+}
+@media (min-width: 901px) {
+  .rookies-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 @media (max-width: 900px) {
   .rookies-col {
@@ -4989,18 +5091,20 @@ body.nav-open {
 
 /* Compact Donations Section */
 .compact-donations {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .compact-donation-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -5015,15 +5119,13 @@ body.nav-open {
 }
 
 .compact-logo {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 4px;
-  flex-shrink: 0;
 }
 
 .compact-charity {
-  flex: 1;
   font-weight: 500;
   color: #1e293b;
   font-size: 0.95rem;
@@ -5032,24 +5134,7 @@ body.nav-open {
 .compact-amount {
   font-weight: 600;
   color: #059669;
-  font-size: 1rem;
-  flex-shrink: 0;
-  min-width: 80px;
-  text-align: right;
-}
-
-@media (max-width: 768px) {
-  .compact-donation-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 1rem;
-  }
-  
-  .compact-amount {
-    align-self: flex-end;
-    text-align: right;
-  }
+  font-size: 1.1rem;
 }
 
 /* Hero Photo Controls */
@@ -5139,6 +5224,11 @@ body.nav-open {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
   z-index: 25;
   position: relative;
+  pointer-events: none;
+}
+
+.hero-photo-carousel .hero-content a {
+  pointer-events: auto;
 }
 
 .hero-photo-carousel .hero-title {
@@ -5196,10 +5286,14 @@ body.nav-open {
 
 /* Play-by-Play Audio Section Styles */
 .audio-grid {
+  margin-top: 2rem;
+}
+
+.audio-list-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
+  align-items: start;
 }
 
 
@@ -5316,9 +5410,10 @@ body.nav-open {
 /* Updated Audio Player Styles - Matching Site Design System */
 .audio-card {
     display: flex;
-    align-items: center; 
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+    align-items: center;
     padding: 1.5rem;
-    margin-bottom: 1rem;
     border: 1px solid var(--gray-light);
     border-radius: var(--border-radius-lg);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -5360,7 +5455,6 @@ body.nav-open {
     display: flex;
     align-items: center;
     flex: 1;
-    margin-right: 2rem;
     min-width: 0;
 }
 
@@ -5444,10 +5538,11 @@ body.nav-open {
 
 /* Audio Info Section - More space for title */
 .audio-info {
-    flex: 0 0 auto;
-    min-width: 200px; /* Increased from 120px to give more space */
-    text-align: right;
-    margin-right: 1rem;
+    flex: 1 1 100%;
+    order: -1;
+    text-align: left;
+    min-width: 0;
+    margin-right: 0;
 }
 
 .audio-info h4 {
@@ -5456,13 +5551,13 @@ body.nav-open {
     color: var(--dark);
     margin-bottom: 0.25rem;
     line-height: 1.3;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .audio-duration {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 0.25rem;
     font-size: 0.85rem;
     color: var(--gray);

@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize smooth scrolling
     initSmoothScrolling();
+
+    // Format rookie names as first name / last name on two lines
+    formatRookieNames();
 });
 
 /**
@@ -378,6 +381,24 @@ function initSmoothScrolling() {
 }
 
 /**
+ * Break rookie names onto two lines: first name, then last name(s)
+ */
+function formatRookieNames() {
+    document.querySelectorAll('.rookie-name').forEach(el => {
+        const text = el.textContent.trim();
+        const firstSpace = text.indexOf(' ');
+        if (firstSpace === -1) return;
+
+        const firstName = text.slice(0, firstSpace);
+        const rest = text.slice(firstSpace + 1);
+        el.textContent = '';
+        el.appendChild(document.createTextNode(firstName));
+        el.appendChild(document.createElement('br'));
+        el.appendChild(document.createTextNode(rest));
+    });
+}
+
+/**
  * Hero video initialization and fallback
  */
 function initHeroVideo() {
@@ -385,16 +406,8 @@ function initHeroVideo() {
 
     if (!heroVideo) return;
 
-    // Ensure video loads properly
-    heroVideo.addEventListener('loadeddata', function () {
-        // Video loaded successfully
-        console.log('Hero video loaded successfully');
-    });
-
     // Error handling
     heroVideo.addEventListener('error', function (e) {
-        console.error('Error loading hero video:', e);
-
         // Apply a background image as fallback
         const hero = document.querySelector('.hero');
         if (hero) {
@@ -604,7 +617,8 @@ function initMediaCarousel() {
     // Create dots for each slide
     slides.forEach((slide, i) => {
         const dot = document.createElement('button');
-        dot.className = 'carousel-indicator';
+        dot.classList.add('dot');
+        dot.classList.add('carousel-indicator');
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', () => {
             stopAutoRotate();
@@ -670,12 +684,8 @@ function initMediaCarousel() {
  * Hero Photo Carousel
  */
 function initHeroPhotoCarousel() {
-    console.log('Initializing hero photo carousel...');
-
     const carousel = document.querySelector('.hero-photo-carousel');
     if (!carousel) {
-        // This is not an error - some pages don't have hero photo carousels
-        console.log('Hero photo carousel not found on this page - skipping initialization');
         return;
     }
 
@@ -684,15 +694,7 @@ function initHeroPhotoCarousel() {
     const prevBtn = carousel.querySelector('.hero-photo-prev');
     const nextBtn = carousel.querySelector('.hero-photo-next');
 
-    console.log('Found hero photo carousel elements:', {
-        slides: slides.length,
-        indicators: indicators.length,
-        prevBtn: !!prevBtn,
-        nextBtn: !!nextBtn
-    });
-
     if (slides.length === 0) {
-        console.error('No hero photo slides found');
         return;
     }
 
@@ -704,12 +706,9 @@ function initHeroPhotoCarousel() {
     showSlide(currentSlide);
     startAutoPlay();
 
-    console.log('Hero photo carousel initialized successfully');
-
     // Event listeners for navigation buttons
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            console.log('Previous button clicked');
             showSlide(currentSlide - 1);
             resetAutoPlay();
         });
@@ -717,7 +716,6 @@ function initHeroPhotoCarousel() {
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            console.log('Next button clicked');
             showSlide(currentSlide + 1);
             resetAutoPlay();
         });
@@ -726,7 +724,6 @@ function initHeroPhotoCarousel() {
     // Event listeners for indicators
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
-            console.log('Indicator clicked:', index);
             showSlide(index);
             resetAutoPlay();
         });
@@ -766,8 +763,6 @@ function initHeroPhotoCarousel() {
     }
 
     function showSlide(index) {
-        console.log('Showing hero photo slide:', index);
-
         // Handle wrap-around
         if (index < 0) index = slides.length - 1;
         if (index >= slides.length) index = 0;
@@ -790,8 +785,6 @@ function initHeroPhotoCarousel() {
         if (indicators[currentSlide]) {
             indicators[currentSlide].classList.add('active');
         }
-
-        console.log('Current hero photo slide updated to:', currentSlide);
     }
 
     function startAutoPlay() {
@@ -799,14 +792,12 @@ function initHeroPhotoCarousel() {
         autoPlayInterval = setInterval(() => {
             showSlide(currentSlide + 1);
         }, autoPlayDelay);
-        console.log('Hero photo carousel auto-play started');
     }
 
     function pauseAutoPlay() {
         if (autoPlayInterval) {
             clearInterval(autoPlayInterval);
             autoPlayInterval = null;
-            console.log('Hero photo carousel auto-play paused');
         }
     }
 
