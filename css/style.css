@@ -4615,7 +4615,7 @@ body.nav-open {
   border: 2px solid #eee;
   margin-bottom: 1rem;
 }
-.award-name {
+.award-card .award-name {
   font-weight: 600;
   margin-bottom: 0.25rem;
   text-align: center;
@@ -4657,7 +4657,7 @@ body.nav-open {
   border: 2px solid #eee;
   margin-bottom: 0.7rem;
 }
-.manager-name {
+.manager-card .manager-name {
   font-weight: 500;
   text-align: center;
 }
@@ -4707,7 +4707,7 @@ body.nav-open {
   border: 2px solid #eee;
   margin-bottom: 0.7rem;
 }
-.hof-name {
+.hof-card .hof-name {
   font-weight: 500;
   text-align: center;
 }
@@ -4766,7 +4766,7 @@ body.nav-open {
   margin-bottom: 0.7rem;
   background: #f3f4f6;
 }
-.hof-name, .award-name, .manager-name {
+.hof-card .hof-name, .award-card .award-name, .manager-card .manager-name {
   font-weight: 600;
   text-align: center;
   margin-bottom: 0.2rem;
@@ -4848,6 +4848,12 @@ body.nav-open {
   flex-direction: column;
   gap: 2rem;
   margin: 2.5rem 0 1.5rem 0;
+}
+
+.all-time-team-col,
+.smites-col,
+.rookies-col {
+  margin-top: 2rem;
 }
 
 .event-standout-section {
@@ -5036,7 +5042,7 @@ body.nav-open {
 @media (max-width: 900px) {
   .rookies-col {
     max-width: 100%;
-    margin: 0 auto;
+    margin: 2rem auto 0;
   }
 }
 
@@ -5135,6 +5141,8 @@ body.nav-open {
   font-weight: 600;
   color: #059669;
   font-size: 1.1rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
 
 /* Hero Photo Controls */

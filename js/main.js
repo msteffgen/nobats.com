@@ -381,10 +381,10 @@ function initSmoothScrolling() {
 }
 
 /**
- * Break rookie names onto two lines: first name, then last name(s)
+ * Break person names onto two lines: first name, then last name(s)
  */
 function formatRookieNames() {
-    document.querySelectorAll('.rookie-name').forEach(el => {
+    document.querySelectorAll('.rookie-name, .manager-name, .smite-name, .hof-name').forEach(el => {
         const text = el.textContent.trim();
         const firstSpace = text.indexOf(' ');
         if (firstSpace === -1) return;
