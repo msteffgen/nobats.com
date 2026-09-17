@@ -4041,9 +4041,7 @@ body.nav-open {
 
 /* Event Narrative */
 .event-narrative {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border-color);
+  margin-top: 0;
 }
 
 .event-narrative p {
@@ -4842,12 +4840,41 @@ body.nav-open {
   margin-top: 1.2rem;
 }
 
+/* Consistent 2rem spacing rhythm for event detail pages (scoped to avoid affecting other pages) */
+.container > section.section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.container > section.section > .section-title {
+  margin-bottom: 2rem;
+}
+.container > section.section > .impact-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.container > section.section > section.section {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.container > section.section > section.section > .section-title {
+  margin-bottom: 2rem;
+}
+.container > section.section > .feature-panel {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.feature-panel > .section-title {
+  margin-bottom: 2rem;
+}
+
 /* Row-based Layout for Event Standouts */
 .hof-awards-managers-row {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin: 2.5rem 0 1.5rem 0;
+  margin: 2rem 0;
 }
 
 .all-time-team-col,
@@ -5016,10 +5043,6 @@ body.nav-open {
 .award-label .fa-star { color: #fff; }
 .award-label .fa-crown { color: #fff; }
 @media (max-width: 900px) {
-  .hof-awards-managers-row {
-    gap: 1.5rem;
-  }
-  
   .hof-list, .awards-list, .managers-list, .smites-list, .rookies-list {
     gap: 1.5rem;
   }
