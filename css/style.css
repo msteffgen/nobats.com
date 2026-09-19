@@ -2987,6 +2987,42 @@ body.nav-open {
   font-size: 0.9rem;
 }
 
+/* Interviews Grid (event detail pages) */
+.interviews-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .interviews-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  }
+}
+
+.interview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.interview-card video {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  background: #000;
+}
+
+.interview-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a2234;
+  text-align: center;
+}
+
 /* Video Grid */
 .video-grid {
   display: grid;
@@ -5093,7 +5129,7 @@ body.nav-open {
   flex: 1;
 }
 .award-label {
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 500;
   margin-top: 0.1rem;
   padding: 0.15em 0.7em;
@@ -5150,6 +5186,9 @@ body.nav-open {
   .hof-list, .awards-list, .managers-list, .smites-list, .rookies-list {
     gap: 1.5rem;
   }
+  .award-label {
+    font-size: 0.85rem;
+  }
 }
 
 
@@ -5162,7 +5201,7 @@ body.nav-open {
   margin-top: 0.2rem;
 }
 @media (min-width: 901px) {
-  .hof-list, .managers-list, .smites-list, .rookies-list {
+  .hof-list, .managers-list, .smites-list, .rookies-list, .awards-list {
     grid-template-columns: repeat(5, 1fr);
     justify-items: start;
   }
@@ -5247,6 +5286,11 @@ body.nav-open {
   border-color: #4ade80;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.charitable-impact-highlight .compact-donations {
+  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
 /* Compact Donations Section */
