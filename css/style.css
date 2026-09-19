@@ -5114,6 +5114,18 @@ body.nav-open {
 .award-label.lifetime {
   background: #991b1b;
 }
+.award-label.sportsmanship {
+  background: #db2777;
+}
+.award-label.pickle {
+  background: #4f46e5;
+}
+.award-label.cyyoung {
+  background: #ea580c;
+}
+.award-label.charitymatch {
+  background: #65a30d;
+}
 .award-label .fa-trophy { color: #fff700; }
 .award-label .fa-star { color: #fff; }
 .award-label .fa-crown { color: #fff; }
@@ -5133,8 +5145,9 @@ body.nav-open {
   margin-top: 0.2rem;
 }
 @media (min-width: 901px) {
-  .rookies-list {
-    grid-template-columns: repeat(6, 1fr);
+  .hof-list, .managers-list, .smites-list, .rookies-list {
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: start;
   }
 }
 @media (max-width: 900px) {
