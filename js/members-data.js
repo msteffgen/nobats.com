@@ -267,39 +267,122 @@ const membersData = [
   { name: "Dan Zimmer", image: "zimmer_dan.png" }
 ];
 
+// Determine the letter a member should be alphabetized under (by last name).
+// Most image filenames are "lastname_firstname.ext", which already gives the
+// right letter. For members without a real photo ("missing_image.png"), fall
+// back to parsing the last name out of the display name instead.
+function getMemberLetter(member) {
+  if (member.image && member.image !== 'missing_image.png') {
+    return member.image.charAt(0).toUpperCase();
+  }
+  return getLastNameLetter(member.name);
+}
+
+// Extract the first letter of the last name from a full display name,
+// stripping any quoted nicknames and common generational suffixes.
+function getLastNameLetter(fullName) {
+  const cleaned = fullName.replace(/"[^"]*"/g, ' ').trim();
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  const suffixes = new Set(['jr.', 'jr', 'sr.', 'sr', 'ii', 'iii', 'iv']);
+  let lastPart = parts[parts.length - 1] || '';
+  if (parts.length > 1 && suffixes.has(lastPart.toLowerCase())) {
+    lastPart = parts[parts.length - 2];
+  }
+  return (lastPart.charAt(0) || '?').toUpperCase();
+}
+
+// Build the A-Z jump nav for a section: real links for letters that have
+// entries, greyed-out placeholders for the rest.
+function buildAlphaNav(navEl, lettersPresent, anchorPrefix) {
+  if (!navEl) return;
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  navEl.innerHTML = alphabet.map(letter => {
+    if (lettersPresent.has(letter)) {
+      return `<a href="#${anchorPrefix}-${letter}" class="alpha-nav-link">${letter}</a>`;
+    }
+    return `<span class="alpha-nav-link disabled">${letter}</span>`;
+  }).join('');
+}
+
 // Function to render all members
 function renderAllMembers() {
   const membersGrid = document.querySelector('.members-grid');
   if (!membersGrid) return;
-  
+
   // Clear existing content (except the first few that are hardcoded)
   membersGrid.innerHTML = '';
-  
-  // Generate member tiles
+
+  const lettersPresent = new Set();
+  let lastLetter = null;
+
+  // Generate member tiles, inserting a full-width letter divider whenever
+  // the alphabetized letter changes (the data is already sorted by last name).
   membersData.forEach((member, index) => {
+    const letter = getMemberLetter(member);
+    lettersPresent.add(letter);
+    if (letter !== lastLetter) {
+      const divider = document.createElement('div');
+      divider.className = 'alpha-divider';
+      divider.id = `lineup-letter-${letter}`;
+      divider.textContent = letter;
+      membersGrid.appendChild(divider);
+      lastLetter = letter;
+    }
+
     const memberTile = document.createElement('div');
     memberTile.className = 'member-tile';
     memberTile.setAttribute('data-aos', 'fade-up');
     memberTile.setAttribute('data-aos-delay', (index % 6) * 50);
-    
+
     memberTile.innerHTML = `
       <img src="img/members/${member.image}" alt="${member.name}" onerror="this.src='img/members/missing_image.png'">
       <h4>${member.name}</h4>
     `;
-    
+
     membersGrid.appendChild(memberTile);
   });
-  
+
+  buildAlphaNav(document.getElementById('lineup-alpha-nav'), lettersPresent, 'lineup-letter');
+
   // Update member count
   const memberCount = document.querySelector('.text-center.mt-5 p');
   if (memberCount) {
     memberCount.textContent = `Showing all ${membersData.length} No Bats Baseball Club members`;
   }
-  
+
   // Refresh AOS animations if available
   if (typeof AOS !== 'undefined') {
     AOS.refresh();
   }
+}
+
+// Build the same kind of A-Z jump nav for the (static) Disabled List section,
+// reading last names straight out of each card's title.
+function renderDisabledListAlphaNav() {
+  const dlSection = document.getElementById('disabled-list');
+  const navEl = document.getElementById('dl-alpha-nav');
+  if (!dlSection || !navEl) return;
+
+  const cards = Array.from(dlSection.querySelectorAll('.member-card'));
+  const lettersPresent = new Set();
+  let lastLetter = null;
+
+  cards.forEach(card => {
+    const titleEl = card.querySelector('.card-title');
+    if (!titleEl) return;
+    const letter = getLastNameLetter(titleEl.textContent);
+    lettersPresent.add(letter);
+    if (letter !== lastLetter) {
+      const divider = document.createElement('div');
+      divider.className = 'alpha-divider';
+      divider.id = `dl-letter-${letter}`;
+      divider.textContent = letter;
+      dlSection.insertBefore(divider, card);
+      lastLetter = letter;
+    }
+  });
+
+  buildAlphaNav(navEl, lettersPresent, 'dl-letter');
 }
 
 // Initialize when DOM is loaded
@@ -308,4 +391,5 @@ document.addEventListener('DOMContentLoaded', function() {
   if (typeof renderAllMembers === 'function') {
     renderAllMembers();
   }
-}); 
+  renderDisabledListAlphaNav();
+});
