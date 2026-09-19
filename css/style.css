@@ -4804,6 +4804,12 @@ body.nav-open {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
+.impact-section.no-subtitle {
+  padding-top: 1.5rem;
+}
+.impact-section.no-subtitle .section-title {
+  margin-bottom: 2rem;
+}
 .impact-section .section-title {
   margin-bottom: 1.2rem;
   margin-top: 0.5rem;
@@ -4986,6 +4992,7 @@ body.nav-open {
   grid-template-columns: repeat(auto-fit, minmax(130px, max-content));
   gap: 1rem;
   justify-content: start;
+  align-items: start;
 }
 
 .awards-list {
@@ -5051,6 +5058,16 @@ body.nav-open {
   gap: 0.85rem;
   min-width: 0;
   text-align: left;
+}
+.award-person.stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.award-photo-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
 }
 .hof-person img, .award-person img, .manager-person img, .smite-person img, .rookie-person img {
   width: 60px;
@@ -5204,6 +5221,32 @@ body.nav-open {
     rgba(0, 0, 0, 0.6) 100%
   );
   z-index: 5;
+}
+
+/* Charitable Impact highlight box (test on 2026 before rolling out) */
+.charitable-impact-highlight {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--border-radius-lg);
+  padding: 2rem 1.5rem;
+}
+
+.container > section.section > section.section.charitable-impact-highlight {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.charitable-impact-highlight .compact-donation-item {
+  background: #fff;
+  border: 1px solid #86efac;
+  padding: 1.5rem 1.25rem;
+}
+
+.charitable-impact-highlight .compact-donation-item:hover {
+  background: #fff;
+  border-color: #4ade80;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Compact Donations Section */
