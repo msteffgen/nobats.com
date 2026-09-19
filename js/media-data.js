@@ -1,4 +1,19 @@
 const albums = {
+  'cincinnati-2026': [
+    'img/gallery/2020s/2026/2026_check_presentation.jpg',
+    'img/gallery/2020s/2026/2026_mike_belt.jpg',
+    'img/gallery/2020s/2026/2026_scorebard_names.jpg',
+    'img/gallery/2020s/2026/IMG_4197.jpg',
+    'img/gallery/2020s/2026/IMG_4245.jpg',
+    'img/gallery/2020s/2026/IMG_4330.jpg',
+    'img/gallery/2020s/2026/IMG_4332.jpg',
+    'img/gallery/2020s/2026/IMG_4474.jpg',
+    'img/gallery/2020s/2026/IMG_4560.jpg',
+    'img/gallery/2020s/2026/IMG_5878.jpg',
+    'img/gallery/2020s/2026/LRS_NBBC_091226_13.jpg',
+    'img/gallery/2020s/2026/LRS_NBBC_091226_20.jpg',
+    'img/gallery/2020s/2026/LRS_NBBC_091226_22.jpg'
+  ],
   'vero-beach-1991': [
     'img/gallery/1990s/1991/dodgertown_91_1.gif',
     'img/gallery/1990s/1991/dodgertown_91_2.jpg',
